@@ -1,45 +1,85 @@
-# 🛠️ Lab: Patch Management & Static Analysis with Bandit
+# Static Application Security Testing (SAST) – Hands-on Analysis
 
-This repository focuses on **Static Application Security Testing (SAST)**. You will use **Bandit**, a tool designed to find common security issues in Python code, to analyze a login script and then apply a "patch" to fix the vulnerabilities.
+## Overview
 
-## 📋 Prerequisites
+This repository demonstrates **Static Application Security Testing (SAST)** techniques used to identify security vulnerabilities in source code **without executing the application**.
 
-1. **Python 3.11** installed on your system.
+The goal of this project is to analyze code for common security flaws and understand how vulnerabilities can be detected early in the development lifecycle.
 
-2. **A Text Editor**: VS Code, Notepad++, or any editor of your choice.
+---
 
-3. **Install Bandit**: Open your terminal and run the following command:
-```bash
-pip install bandit
-```
+## Objectives
 
-## 🚀 Hands-on Activity
+* Understand principles of static code analysis
+* Identify common security vulnerabilities in source code
+* Perform manual and tool-based static testing
+* Document findings and security risks
 
-### 1. Environment Setup
+---
 
-* **Clone the Repository**: Use `git clone` to pull this laboratory to your local machine.
-* **Locate the Target**: Find the script named `app_login.py`. This file contains common security flaws, such as hardcoded credentials and unsafe file path handling.
+## Tools & Techniques
 
+* Manual Code Review
+* Pattern-based vulnerability detection
+* (Optional – add if used) Semgrep / Bandit / ESLint security plugins
 
-### 2. Run the Security Scan
+---
 
-Open your terminal in the repository folder and execute a recursive scan to identify vulnerabilities:
+## Test Cases & Analysis
 
-```bash 
-bandit -r app_login.py
-```
+### 1. Input Validation Issues
 
-### 3. Analyze the Findings
-Review the Bandit output and focus on the following:
-**Hardcoded Passwords**: Look for "Low", "Medium", or "High" severity alerts related to string literals used in authentication.
-**Absolute Paths**: Notice how the script references local directories (like `E:\cybersecurity\`), which can expose system architecture to an attacker.
+* Missing validation on user input
+* Potential injection risks
 
-### 4. Apply the Patch
-**Patch Management** is the practice of fixing these identified vulnerabilities to maintain system integrity.
-**Task**: Modify the script to remove the plaintext password. Consider using a hashing algorithm or environment variables.
-**Verify**: After applying your changes, run the Bandit scan again to ensure all "High" severity issues are resolved.
+### 2. Hardcoded Credentials
 
-## 📖 Key Concepts Covered
+* Sensitive data stored directly in source code
+* Security risk for exposure
+
+### 3. Improper Error Handling
+
+* Information leakage through error messages
+
+### 4. Insecure Coding Practices
+
+* Lack of sanitization
+* Unsafe handling of user-controlled data
+
+---
+
+## Findings
+
+| Vulnerability Type     | Description                    | Impact |
+| ---------------------- | ------------------------------ | ------ |
+| Input Validation Flaw  | Unchecked user input           | High   |
+| Hardcoded Secrets      | Credentials exposed in code    | High   |
+| Error Handling Issues  | Sensitive info leakage         | Medium |
+| Insecure Data Handling | Unsafe processing of user data | High   |
+
+---
+
+## Key Learnings
+
+* Static testing helps identify vulnerabilities **before deployment**
+* Early detection reduces risk and cost of fixing issues
+* Secure coding practices are essential for application security
+
+---
+
+## Future Improvements
+
+* Integrate automated SAST tools (Semgrep, Bandit)
+* Expand test cases with real-world vulnerable code samples
+* Compare results between different static analysis tools
+
+---
+
+## Conclusion
+
+This project demonstrates how static analysis can be used to proactively identify security issues and improve overall application security posture.
+
+## Key Concepts Covered
 - **SAST (Static Analysis)**: Reviewing code for flaws without actually running it.
 - **Patch Management**: The lifecycle of identifying and deploying code updates to mitigate risks.
 - **Secure Authentication**: Moving away from hardcoded secrets toward secure storage methods.
