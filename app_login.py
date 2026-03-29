@@ -10,6 +10,7 @@ def validate_login():
     password = entry_pass.get()
 
     # VULNERABILITY: Hardcoded plaintext credentials 
+    # Credentials stored directly in code can be exposed via static analysis
     if username == "admin" and password == "SuperSecret123":
         messagebox.showinfo("Success", "Access Granted! Opening Patch Page...")
         open_patch_page()
